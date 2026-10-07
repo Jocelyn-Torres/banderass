@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun BanderaColombia() {
+fun BanderaArgentina() {
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -17,23 +17,23 @@ fun BanderaColombia() {
 
         Box(
             modifier = Modifier
-                .weight(2f)
+                .weight(1f)
                 .fillMaxSize()
-                .background(Color(0xFFFFD600))
+                .background(Color(0xFF74ACDF))
         )
 
         Box(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxSize()
-                .background(Color(0xFF003893))
+                .background(Color.White)
         )
 
         Box(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxSize()
-                .background(Color(0xFFCE1126))
+                .background(Color(0xFF74ACDF))
         )
     }
 }
