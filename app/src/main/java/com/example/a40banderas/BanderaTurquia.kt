@@ -1,29 +1,54 @@
 package com.example.a40banderas
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.foundation.Canvas
+import androidx.compose.ui.graphics.Color
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 
 @Composable
 fun BanderaTurquia() {
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFFE30A17))
+    ConstraintLayout(
+        modifier = Modifier.fillMaxSize()
     ) {
 
+        val (fondo, logo) = createRefs()
+
+        Box(
+            modifier = Modifier
+                .background(Color(0xFFE30A17))
+                .constrainAs(fondo) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints
+                }
+        )
+
         Canvas(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .constrainAs(logo) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints
+                }
         ) {
 
             val centro = Offset(size.width * 0.42f, size.height * 0.5f)
-
 
             drawCircle(
                 color = Color.White,
@@ -39,7 +64,6 @@ fun BanderaTurquia() {
                     centro.y - size.minDimension * 0.02f
                 )
             )
-
 
             val estrellaCentro = Offset(
                 size.width * 0.57f,
