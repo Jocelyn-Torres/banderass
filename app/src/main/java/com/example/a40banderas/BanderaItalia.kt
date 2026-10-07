@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun BanderaFrancia() {
+fun BanderaItalia() {
 
     Row(
         modifier = Modifier.fillMaxSize()
@@ -20,7 +20,7 @@ fun BanderaFrancia() {
             modifier = Modifier
                 .weight(1f)
                 .fillMaxHeight()
-                .background(Color(0xFF0055A4))
+                .background(Color(0xFF009246))
         )
 
         Box(
@@ -34,7 +34,7 @@ fun BanderaFrancia() {
             modifier = Modifier
                 .weight(1f)
                 .fillMaxHeight()
-                .background(Color(0xFFEF4135))
+                .background(Color(0xFFCE2B37))
         )
     }
 }
