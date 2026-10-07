@@ -2,39 +2,73 @@ package com.example.a40banderas
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 
 @Composable
-fun BanderaFrancia() {
+fun BanderaFrancia(modifier: Modifier = Modifier) {
 
-    Row(
-        modifier = Modifier.fillMaxSize()
-    ) {
+    ConstraintLayout(modifier = modifier.fillMaxSize()) {
+
+        val(azul, blanco, rojo) = createRefs()
+
+        val lineaGuia1 = createGuidelineFromStart(0.33f)
+        val lineaGuia2 = createGuidelineFromStart(0.66f)
+
 
         Box(
             modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight()
-                .background(Color(0xFF0055A4))
+                .background(Color(0xFF0000FF))
+                .constrainAs(azul) {
+                    start.linkTo(parent.start)
+                    end.linkTo(lineaGuia1)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints
+                }
         )
 
+
         Box(
             modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight()
                 .background(Color.White)
+                .constrainAs(blanco) {
+                    start.linkTo(lineaGuia1)
+                    end.linkTo(lineaGuia2)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints
+                }
         )
+
 
         Box(
             modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight()
-                .background(Color(0xFFEF4135))
+                .background(Color(0xFFCE1126))
+                .constrainAs(rojo) {
+                    start.linkTo(lineaGuia2)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints
+                }
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BanderaFranciaPreview() {
+    BanderaFrancia()
 }
