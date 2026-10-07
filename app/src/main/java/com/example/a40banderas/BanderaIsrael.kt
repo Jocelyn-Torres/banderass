@@ -9,57 +9,48 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
-import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
-import kotlin.math.cos
-import kotlin.math.sin
-
-fun trianglePath(
-    cx: Float,
-    cy: Float,
-    r: Float,
-    rotationDeg: Float
-): Path {
-
-    val path = Path()
-
-    for (i in 0..2) {
-
-        val angle = Math.toRadians(
-            (rotationDeg + i * 120).toDouble()
-        )
-
-        val x = cx + r * cos(angle).toFloat()
-        val y = cy + r * sin(angle).toFloat()
-
-        if (i == 0) {
-            path.moveTo(x, y)
-        } else {
-            path.lineTo(x, y)
-        }
-    }
-
-    path.close()
-
-    return path
-}
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 
 @Composable
-fun BanderaIsrael() {
+fun BanderaIsrael(modifier: Modifier = Modifier) {
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
+    ConstraintLayout(
+        modifier = Modifier.fillMaxSize()
     ) {
 
+        val (fondo, logo) = createRefs()
+
+        Box(
+            modifier = Modifier
+                .background(Color.White)
+                .constrainAs(fondo) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints
+                }
+        )
+
         Canvas(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .constrainAs(logo) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints
+                }
         ) {
 
             val azul = Color(0xFF0038B8)
-
 
             drawRect(
                 color = azul,
@@ -72,7 +63,6 @@ fun BanderaIsrael() {
                     size.height * 0.12f
                 )
             )
-
 
             drawRect(
                 color = azul,
@@ -86,7 +76,7 @@ fun BanderaIsrael() {
                 )
             )
 
-
+            // Estrella de David
             val cx = size.width / 2
             val cy = size.height / 2
             val r = size.minDimension * 0.18f
