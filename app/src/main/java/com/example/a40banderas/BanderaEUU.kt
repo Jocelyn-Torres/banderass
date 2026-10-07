@@ -3,26 +3,34 @@ package com.example.a40banderas
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 
 @Composable
 fun BanderaEstadosUnidos() {
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
+    ConstraintLayout(
+        modifier = Modifier.fillMaxSize()
     ) {
 
+        val (rayas, canton) = createRefs()
+
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .constrainAs(rayas) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                }
         ) {
 
             repeat(13) { indice ->
@@ -46,6 +54,10 @@ fun BanderaEstadosUnidos() {
                 .fillMaxWidth(0.4f)
                 .height(180.dp)
                 .background(Color(0xFF3C3B6E))
+                .constrainAs(canton) {
+                    start.linkTo(parent.start)
+                    top.linkTo(parent.top)
+                }
         ) {
 
             Canvas(
@@ -59,15 +71,14 @@ fun BanderaEstadosUnidos() {
                 val espacioY = size.height / filas
 
                 for (fila in 0 until filas) {
-
                     for (columna in 0 until columnas) {
 
                         drawCircle(
                             color = Color.White,
                             radius = 3.dp.toPx(),
                             center = androidx.compose.ui.geometry.Offset(
-                                x = espacioX * columna + espacioX / 2,
-                                y = espacioY * fila + espacioY / 2
+                                espacioX * columna + espacioX / 2,
+                                espacioY * fila + espacioY / 2
                             )
                         )
                     }
