@@ -8,28 +8,43 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.constraintlayout.compose.ConstraintLayout
 
 @Composable
 fun BanderaJapon() {
 
-    Box(
+    ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
 
-        Canvas(
-            modifier = Modifier.fillMaxSize()
+        val (circulo) = createRefs()
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .constrainAs(circulo) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                }
         ) {
 
-            drawCircle(
-                color = Color(0xFFBC002D),
-                radius = size.minDimension * 0.22f,
-                center = Offset(
-                    x = size.width / 2,
-                    y = size.height / 2
+            Canvas(
+                modifier = Modifier.fillMaxSize()
+            ) {
+
+                drawCircle(
+                    color = Color(0xFFBC002D),
+                    radius = size.minDimension * 0.22f,
+                    center = Offset(
+                        size.width / 2,
+                        size.height / 2
+                    )
                 )
-            )
+            }
         }
     }
 }
