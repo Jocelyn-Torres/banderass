@@ -1,4 +1,4 @@
-package com.example.banderascompose.ui.theme
+package com.example.a40banderas
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.aspectRatio
