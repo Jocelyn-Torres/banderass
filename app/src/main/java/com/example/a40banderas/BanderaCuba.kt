@@ -9,58 +9,22 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import kotlin.math.cos
-import kotlin.math.sin
-
-fun estrellaCuba(
-    cx: Float,
-    cy: Float,
-    radioExterior: Float,
-    radioInterior: Float
-): Path {
-    val path = Path()
-
-    for (i in 0 until 10) {
-        val radio = if (i % 2 == 0) radioExterior else radioInterior
-        val angulo = Math.toRadians(
-            (-90 + i * 36).toDouble()
-        )
-
-        val x = cx + radio * cos(angulo).toFloat()
-        val y = cy + radio * sin(angulo).toFloat()
-
-        if (i == 0) {
-            path.moveTo(x, y)
-        } else {
-            path.lineTo(x, y)
-        }
-    }
-
-    path.close()
-    return path
-}
 
 @Composable
 fun BanderaCuba() {
-
     Canvas(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
-
         val band = size.height / 5f
 
         for (i in 0 until 5) {
-
             if (i % 2 == 0) {
                 drawRect(
                     color = Color(0xFF002E6E),
                     topLeft = Offset(0f, i * band),
-                    size = Size(
-                        size.width,
-                        band
-                    )
+                    size = Size(size.width, band)
                 )
             }
         }
@@ -69,19 +33,13 @@ fun BanderaCuba() {
 
         val trianglePath = Path().apply {
             moveTo(0f, 0f)
-            lineTo(
-                triWidth,
-                size.height / 2f
-            )
-            lineTo(
-                0f,
-                size.height
-            )
+            lineTo(triWidth, size.height / 2f)
+            lineTo(0f, size.height)
             close()
         }
 
         drawPath(
-            trianglePath,
+            path = trianglePath,
             color = Color(0xFFCB1428)
         )
 
