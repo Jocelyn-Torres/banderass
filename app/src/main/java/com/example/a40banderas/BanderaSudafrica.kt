@@ -7,131 +7,119 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.StrokeCap
 
 @Composable
-fun BanderaSudafrica() {
+fun BanderaReinoUnido() {
     Canvas(
         modifier = Modifier.fillMaxSize()
     ) {
-
         val w = size.width
         val h = size.height
 
-
         drawRect(
-            color = Color(0xFF002395),
+            color = Color(0xFF012169),
             size = size
         )
 
 
-        val amarilloFondo = Path().apply {
-            moveTo(0f, h * 0.62f)
-            lineTo(w * 0.40f, h * 0.50f)
-            lineTo(w, h * 0.62f)
+        val diagonalBlanca1 = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(w * 0.13f, 0f)
+            lineTo(w, h * 0.87f)
             lineTo(w, h)
+            lineTo(w * 0.87f, h)
+            lineTo(0f, h * 0.13f)
+            close()
+        }
+
+        drawPath(
+            path = diagonalBlanca1,
+            color = Color.White
+        )
+
+        val diagonalBlanca2 = Path().apply {
+            moveTo(w, 0f)
+            lineTo(w, h * 0.13f)
+            lineTo(w * 0.13f, h)
             lineTo(0f, h)
+            lineTo(0f, h * 0.87f)
+            lineTo(w * 0.87f, 0f)
             close()
         }
 
         drawPath(
-            path = amarilloFondo,
-            color = Color(0xFFFFB81C)
+            path = diagonalBlanca2,
+            color = Color.White
         )
 
 
-        val apex = Offset(
-            w * 0.36f,
-            h / 2f
-        )
-
-        drawLine(
-            color = Color.White,
-            start = Offset(0f, 0f),
-            end = apex,
-            strokeWidth = h * 0.30f,
-            cap = StrokeCap.Butt
-        )
-
-        drawLine(
-            color = Color.White,
-            start = Offset(0f, h),
-            end = apex,
-            strokeWidth = h * 0.30f,
-            cap = StrokeCap.Butt
-        )
-
-        drawLine(
-            color = Color.White,
-            start = apex,
-            end = Offset(w, h * 0.14f),
-            strokeWidth = h * 0.30f,
-            cap = StrokeCap.Butt
-        )
-
-        drawLine(
-            color = Color.White,
-            start = apex,
-            end = Offset(w, h * 0.86f),
-            strokeWidth = h * 0.30f,
-            cap = StrokeCap.Butt
-        )
-
-
-        drawLine(
-            color = Color(0xFF007A4D),
-            start = Offset(0f, 0f),
-            end = apex,
-            strokeWidth = h * 0.20f,
-            cap = StrokeCap.Butt
-        )
-
-        drawLine(
-            color = Color(0xFF007A4D),
-            start = Offset(0f, h),
-            end = apex,
-            strokeWidth = h * 0.20f,
-            cap = StrokeCap.Butt
-        )
-
-        drawLine(
-            color = Color(0xFF007A4D),
-            start = apex,
-            end = Offset(w, h * 0.14f),
-            strokeWidth = h * 0.20f,
-            cap = StrokeCap.Butt
-        )
-
-        drawLine(
-            color = Color(0xFF007A4D),
-            start = apex,
-            end = Offset(w, h * 0.86f),
-            strokeWidth = h * 0.20f,
-            cap = StrokeCap.Butt
-        )
-
-
-        val amarillo = Path().apply {
-            moveTo(0f, h * 0.12f)
-            lineTo(w * 0.45f, h * 0.50f)
-            lineTo(0f, h * 0.88f)
-            lineTo(0f, h * 0.78f)
-            lineTo(w * 0.34f, h * 0.50f)
-            lineTo(0f, h * 0.22f)
-            close()
-        }
-
-
-        val negro = Path().apply {
-            moveTo(0f, h * 0.10f)
-            lineTo(w * 0.35f, h * 0.50f)
-            lineTo(0f, h * 0.88f)
+        val diagonalRoja1 = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(w * 0.055f, 0f)
+            lineTo(w, h * 0.945f)
+            lineTo(w, h)
+            lineTo(w * 0.945f, h)
+            lineTo(0f, h * 0.055f)
             close()
         }
 
         drawPath(
-            path = negro,
-            color = Color.Black
+            path = diagonalRoja1,
+            color = Color(0xFFC8102E)
+        )
+
+        val diagonalRoja2 = Path().apply {
+            moveTo(w, 0f)
+            lineTo(w, h * 0.055f)
+            lineTo(w * 0.055f, h)
+            lineTo(0f, h)
+            lineTo(0f, h * 0.945f)
+            lineTo(w * 0.945f, 0f)
+            close()
+        }
+
+        drawPath(
+            path = diagonalRoja2,
+            color = Color(0xFFC8102E)
+        )
+
+
+        drawRect(
+            color = Color.White,
+            topLeft = Offset(0f, h * 0.38f),
+            size = androidx.compose.ui.geometry.Size(
+                w,
+                h * 0.24f
+            )
+        )
+
+        drawRect(
+            color = Color.White,
+            topLeft = Offset(w * 0.38f, 0f),
+            size = androidx.compose.ui.geometry.Size(
+                w * 0.24f,
+                h
+            )
+        )
+
+
+
+        drawRect(
+            color = Color(0xFFC8102E),
+            topLeft = Offset(0f, h * 0.44f),
+            size = androidx.compose.ui.geometry.Size(
+                w,
+                h * 0.12f
+            )
+        )
+
+        drawRect(
+            color = Color(0xFFC8102E),
+            topLeft = Offset(w * 0.44f, 0f),
+            size = androidx.compose.ui.geometry.Size(
+                w * 0.12f,
+                h
+            )
         )
     }
 }

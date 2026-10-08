@@ -10,6 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
     heightDp = 891
 )
 @Composable
-fun PreviewBanderaSudafrica() {
-    BanderaSudafrica()
+fun PreviewBanderaReinoUnido() {
+    BanderaReinoUnido()
 }
